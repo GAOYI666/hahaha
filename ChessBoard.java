@@ -11,11 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class ChessBoard extends JPanel {
 	int chess[][] = new int[11][11];
-	int boxes[][] = new int[11][11]; // ±ãÓÚÅĞ¶Ï¸ñ×ÓµÄ¹éÊô
+	int boxes[][] = new int[11][11]; // ä¾¿äºåˆ¤æ–­æ ¼å­çš„å½’å±
 	int player = 1;
 	// int li[]=new int[4];
 	// int poi;
-	// ÆåÅÌµÄ¹¹Ôì·½·¨
+	// æ£‹ç›˜çš„æ„é€ æ–¹æ³•
 	public ChessBoard() {
 		// poi=0;
 		setVisible(false);
@@ -32,7 +32,7 @@ public class ChessBoard extends JPanel {
 				}
 			}
 		}
-		addMouseListener(new MouseAdapter() { // Êó±êÊÂ¼ş¼àÌı
+		addMouseListener(new MouseAdapter() { // é¼ æ ‡äº‹ä»¶ç›‘å¬
 			int x;
 			int y;
 			public void mouseClicked(MouseEvent e) {
@@ -67,19 +67,19 @@ public class ChessBoard extends JPanel {
 			}
 		}
 	}
-	// »æÍ¼·½·¨
+	// ç»˜å›¾æ–¹æ³•
 			public void paintComponent(Graphics g) {
 				// System.out.println("12");
 				//System.out.println("paintComponent:"+player);
 				super.paintComponent(g);
 				for (int i = 0; i < 11; i++) {
 					for (int j = 0; j < 11; j++) {
-						if (i % 2 == 0 && j % 2 == 0) { // µã
+						if (i % 2 == 0 && j % 2 == 0) { // ç‚¹
 							g.setColor(Color.black);
 							g.fillOval(i * 40+10, j * 40+10, 10, 10);
 						} else {
 							if (i % 2 == 0 && j % 2 == 1) {
-								g.setColor(Color.black); // ×İÏò±ß
+								g.setColor(Color.black); // çºµå‘è¾¹
 								if (chess[i][j] == -1) {
 									g.fillRoundRect(i * 40+10, j * 40 - 20, 5, 70, 10, 10);
 								} else {
@@ -89,14 +89,14 @@ public class ChessBoard extends JPanel {
 																							// 60,
 																							// true);
 								}
-							} else if (i % 2 == 1 && j % 2 == 0) { // ºáÏò±ß
+							} else if (i % 2 == 1 && j % 2 == 0) { // æ¨ªå‘è¾¹
 								g.setColor(Color.BLACK);
 								if (chess[i][j] == -1) {
 									// g.fill3DRect(i*40-20,j*40 , 60, 20, false);
 									g.fillRoundRect(i * 40 - 20, j * 40+10, 70, 5, 10, 10);
 								}
 								g.drawRoundRect(i * 40 - 20, j * 40+10, 70, 5, 10, 10);
-							} else { // ÖĞ¼ä
+							} else { // ä¸­é—´
 								if (boxes[i][j] == 1) {
 									g.setColor(Color.GREEN);
 								} else {
@@ -112,11 +112,11 @@ public class ChessBoard extends JPanel {
 					}
 				}
 			}
-	// ¸üĞÂ»­°å·½·¨
+	// æ›´æ–°ç”»æ¿æ–¹æ³•
 	public void update(Graphics g) {
 						paint(g);
 	}
-	// Ã¿×ßÒ»²½ĞŞ¸Ä¾ØÕóÏàÓ¦Öµ
+	// æ¯èµ°ä¸€æ­¥ä¿®æ”¹çŸ©é˜µç›¸åº”å€¼
 	public void changeword(int x, int y) {
 		int i = x;
 		int j = y;
@@ -125,16 +125,16 @@ public class ChessBoard extends JPanel {
 				chess[i][j] = -1;
 				if (j == 0) {
 					chess[i][j + 1]++;
-					System.out.println("¸ñ×ÓÖµ£º"+chess[i][j + 1]);
-					boxes[i][j + 1] = player;// ±£³Ö·½¸ñÊôÓÚ×îºóÒ»²½Ö´ĞĞµÄÈË
+					System.out.println("æ ¼å­å€¼ï¼š"+chess[i][j + 1]);
+					boxes[i][j + 1] = player;// ä¿æŒæ–¹æ ¼å±äºæœ€åä¸€æ­¥æ‰§è¡Œçš„äºº
 					// System.out.println(chess[i][j+1]);
 					if (chess[i][j + 1] != 4) {
-						player = player % 2+1;// ·½¸ñÎ¥±³È«²¿Õ¼ÓĞ£¬ĞĞ×ßÈ¨½»»¹¸øÁíÒ»¸öÈË
+						player = player % 2+1;// æ–¹æ ¼è¿èƒŒå…¨éƒ¨å æœ‰ï¼Œè¡Œèµ°æƒäº¤è¿˜ç»™å¦ä¸€ä¸ªäºº
 						// System.out.println("a2");
 					}
 				} else if (j == 10) {
 					chess[i][j - 1]++;
-					System.out.println("¸ñ×ÓÖµ£º"+chess[i][j -1]);
+					System.out.println("æ ¼å­å€¼ï¼š"+chess[i][j -1]);
 					boxes[i][j - 1] = player;
 					// System.out.println(chess[i][j-1]);
 					if (chess[i][j - 1] != 4) {
@@ -143,10 +143,10 @@ public class ChessBoard extends JPanel {
 				} else {
 					chess[i][j + 1]++;
 					chess[i][j - 1]++;
-					System.out.println("¸ñ×ÓÖµ£º"+chess[i][j + 1]);
-					System.out.println("¸ñ×ÓÖµ£º"+chess[i][j - 1]);
-					boxes[i][j - 1] = player;// ±£³Ö·½¸ñÊôÓÚ×îºóÒ»²½Ö´ĞĞµÄÈË
-					boxes[i][j + 1] = player;// ±£³Ö·½¸ñÊôÓÚ×îºóÒ»²½Ö´ĞĞµÄÈË
+					System.out.println("æ ¼å­å€¼ï¼š"+chess[i][j + 1]);
+					System.out.println("æ ¼å­å€¼ï¼š"+chess[i][j - 1]);
+					boxes[i][j - 1] = player;// ä¿æŒæ–¹æ ¼å±äºæœ€åä¸€æ­¥æ‰§è¡Œçš„äºº
+					boxes[i][j + 1] = player;// ä¿æŒæ–¹æ ¼å±äºæœ€åä¸€æ­¥æ‰§è¡Œçš„äºº
 					// System.out.println(chess[i][j-1]);
 					// System.out.println(chess[i][j+1]);
 					if (chess[i][j + 1] != 4 && chess[i][j - 1] != 4) {
@@ -157,7 +157,7 @@ public class ChessBoard extends JPanel {
 				chess[i][j] = -1;
 				if (i == 0) {
 					chess[i + 1][j]++;
-					System.out.println("¸ñ×ÓÖµ£º"+chess[i+1][j]);
+					System.out.println("æ ¼å­å€¼ï¼š"+chess[i+1][j]);
 					boxes[i + 1][j] = player;
 					// System.out.println(chess[i+1][j]);
 					if (chess[i + 1][j] !=4) {
@@ -166,7 +166,7 @@ public class ChessBoard extends JPanel {
 					}
 				} else if (i == 10) {
 					chess[i - 1][j]++;
-				//	System.out.println("¸ñ×ÓÖµ£º"+chess[i-1][j]);
+				//	System.out.println("æ ¼å­å€¼ï¼š"+chess[i-1][j]);
 					boxes[i - 1][j] = player;
 					// System.out.println(chess[i-1][j]);
 					if (chess[i - 1][j] != 4) {
@@ -175,8 +175,8 @@ public class ChessBoard extends JPanel {
 				} else {
 					chess[i + 1][j]++;
 					chess[i - 1][j]++;
-				//	System.out.println("¸ñ×ÓÖµ£º"+chess[i+1][j]);
-					//System.out.println("¸ñ×ÓÖµ£º"+chess[i-1][j]);
+				//	System.out.println("æ ¼å­å€¼ï¼š"+chess[i+1][j]);
+					//System.out.println("æ ¼å­å€¼ï¼š"+chess[i-1][j]);
 					boxes[i - 1][j] = player;
 					boxes[i + 1][j] = player;
 					// System.out.println(chess[i+1][j]);
@@ -190,7 +190,7 @@ public class ChessBoard extends JPanel {
 		repaint();
 		gameover();
 	}
-	// ÅĞ¶ÏÊÇ·ñ½áÊøÓÎÏ·ÁË
+	// åˆ¤æ–­æ˜¯å¦ç»“æŸæ¸¸æˆäº†
 	public boolean gameover() {
 		int me = 0, com = 0;
 		for (int m = 0; m < 11; m++) {
@@ -209,11 +209,11 @@ public class ChessBoard extends JPanel {
 		if (me + com == 25) {
 			player=1;
 			if (me > com) {
-				// infoStr ="ÄúÊ¤ÀûÁË";
-				JOptionPane.showMessageDialog(null, "ÄúÊ¤ÀûÁË!!!  ±È·ÖÎª£º"+me+" : "+com, "information",
+				// infoStr ="æ‚¨èƒœåˆ©äº†";
+				JOptionPane.showMessageDialog(null, "æ‚¨èƒœåˆ©äº†!!!  æ¯”åˆ†ä¸ºï¼š"+me+" : "+com, "information",
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "µçÄÔÊ¤Àû   ±È·ÖÎª£º"+me+" : "+com, "information",
+				JOptionPane.showMessageDialog(null, "ç”µè„‘èƒœåˆ©   æ¯”åˆ†ä¸ºï¼š"+me+" : "+com, "information",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 			return true;
